@@ -1,3 +1,2 @@
 Django>=4.2
-pip install gunicorn
-pip freeze > requirements.txt
+ 
