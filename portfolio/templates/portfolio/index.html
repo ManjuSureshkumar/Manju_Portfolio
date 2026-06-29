@@ -1,0 +1,736 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Manju Venkatachalapathi – Python Developer</title>
+
+  <link rel="shortcut icon"
+        href="{% static 'portfolio/images/manju-avatar.png' %}"
+        type="image/png">
+
+  <link rel="stylesheet"
+        href="{% static 'portfolio/css/style.css' %}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+<main>
+
+  <!-- ===================== SIDEBAR ===================== -->
+
+  <aside class="sidebar" data-sidebar>
+
+    <div class="sidebar-info">
+
+      <figure class="avatar-box">
+        <img src="{% static 'portfolio/images/p.jpg' %}"
+             alt="Manju Venkatachalapathi">
+      </figure>
+
+      <div class="info-content">
+
+        <h1 class="name" title="{{ profile.name }}">
+          {{ profile.name }}
+        </h1>
+
+        <p class="title">
+          {{ profile.designation }}
+        </p>
+
+      </div>
+
+      <button class="info_more-btn" data-sidebar-btn>
+
+        <span>Show Contacts</span>
+
+        <ion-icon name="chevron-down"></ion-icon>
+
+      </button>
+
+    </div>
+
+    <div class="sidebar-info_more">
+
+      <div class="separator"></div>
+
+      <ul class="contacts-list">
+
+        <li class="contact-item">
+
+          <div class="icon-box">
+            <ion-icon name="mail-outline"></ion-icon>
+          </div>
+
+          <div class="contact-info">
+
+            <p class="contact-title">
+              Email
+            </p>
+
+            <a href="mailto:{{ profile.email }}"
+               class="contact-link">
+
+               {{ profile.email }}
+
+            </a>
+
+          </div>
+
+        </li>
+
+        <li class="contact-item">
+
+          <div class="icon-box">
+            <ion-icon name="phone-portrait-outline"></ion-icon>
+          </div>
+
+          <div class="contact-info">
+
+            <p class="contact-title">
+              Phone
+            </p>
+
+            <a href="tel:{{ profile.phone }}"
+               class="contact-link">
+
+               {{ profile.phone }}
+
+            </a>
+
+          </div>
+
+        </li>
+
+        <li class="contact-item">
+
+          <div class="icon-box">
+            <ion-icon name="location-outline"></ion-icon>
+          </div>
+
+          <div class="contact-info">
+
+            <p class="contact-title">
+              Location
+            </p>
+
+            <address>
+              {{ profile.location }}
+            </address>
+
+          </div>
+
+        </li>
+
+      </ul>
+
+      <div class="separator"></div>
+
+      <ul class="social-list">
+
+        <li class="social-item">
+
+          <a href="{{ profile.linkedin }}"
+             target="_blank"
+             class="social-link">
+
+            <ion-icon name="logo-linkedin"></ion-icon>
+
+          </a>
+
+        </li>
+
+        <li class="social-item">
+
+          <a href="{{ profile.github }}"
+             target="_blank"
+             class="social-link">
+
+            <ion-icon name="logo-github"></ion-icon>
+
+          </a>
+
+        </li>
+
+      </ul>
+
+    </div>
+
+  </aside>
+
+  <!-- ===================== MAIN CONTENT ===================== -->
+
+  <div class="main-content">
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+      <ul class="navbar-list">
+
+        <li class="navbar-item">
+          <button class="navbar-link active"
+                  data-nav-link>
+            About
+          </button>
+        </li>
+
+        <li class="navbar-item">
+          <button class="navbar-link"
+                  data-nav-link>
+            Resume
+          </button>
+        </li>
+
+        <li class="navbar-item">
+          <button class="navbar-link"
+                  data-nav-link>
+            Portfolio
+          </button>
+        </li>
+
+
+        <li class="navbar-item">
+          <button class="navbar-link"
+                  data-nav-link>
+            Contact
+          </button>
+        </li>
+
+      </ul>
+
+    </nav>
+
+    <!-- ===================== ABOUT ===================== -->
+
+    <article class="about active" data-page="about">
+
+      <header>
+        <h2 class="h2 article-title">
+          About Me
+        </h2>
+      </header>
+
+      <section class="about-text">
+
+        <p>
+
+        {{ profile.about }}
+
+      </p>
+      </section>
+
+      <!-- ===================== SERVICES ===================== -->
+
+      <section class="service">
+
+        <h3 class="h3 service-title">
+          What I Do
+        </h3>
+
+        <ul class="service-list">
+
+          {% for service in services %}
+
+          <li class="service-item">
+
+            <div class="service-icon-box">
+
+              <ion-icon
+                  name="{{ service.icon }}">
+
+              </ion-icon>
+
+            </div>
+
+            <div class="service-content-box">
+
+              <h4 class="h4 service-item-title">
+
+                {{ service.title }}
+              
+              </h4>
+              <p class="service-item-text">
+
+                {{ service.description }}
+
+              </p>
+
+            </div>
+
+          </li>
+
+          {% endfor %}
+
+        </ul>
+
+      </section>
+
+      <!-- ===================== CERTIFICATIONS ===================== -->
+
+<section class="service" style="margin-top:30px;">
+
+  <h3 class="h3 service-title">
+    Certifications & Courses
+  </h3>
+
+  <ul class="timeline-list">
+
+{% for certificate in certificates %}
+
+<li>
+
+<h4 class= "h4 timeline-item-title">
+
+{{ certificate.title }}
+
+</h4>
+
+<span>
+
+{{ certificate.organization }}
+
+</span>
+
+<span>
+
+{{ certificate.year }}
+
+</span>
+
+</li>
+
+{% endfor %}
+
+</ul>
+
+</section>
+
+</article>
+<!-- ===================== RESUME ===================== -->
+
+<article class="resume" data-page="resume">
+
+<header>
+
+<h2 class="h2 article-title">
+
+Resume
+
+</h2>
+
+</header>
+
+<!-- ===================== EDUCATION ===================== -->
+
+<section class="timeline">
+
+<div class="title-wrapper">
+
+<div class="icon-box">
+
+<ion-icon name="school-outline"></ion-icon>
+
+</div>
+
+<h3 class="h3">
+
+Education
+
+</h3>
+
+</div>
+
+<ol class="timeline-list">
+
+{% for edu in education %}
+
+<li class="timeline-item">
+
+<h4 class="h4 timeline-item-title">
+
+{{ edu.degree }}
+
+</h4>
+
+<span>
+
+{{ edu.year }}
+
+</span>
+
+<p class="timeline-text">
+    {{ edu.institution }}
+</p>
+
+
+<p>
+
+{{ edu.description }}
+
+</p>
+
+
+</li>
+
+{% endfor %}
+
+</ol>
+
+</section>
+
+
+
+<!-- ===================== EXPERIENCE ===================== -->
+
+<section class="timeline">
+
+<div class="title-wrapper">
+
+<div class="icon-box">
+
+<ion-icon name="briefcase-outline"></ion-icon>
+
+</div>
+
+<h3 class="h3">
+
+Experience
+
+</h3>
+
+</div>
+
+<ol class="timeline-list">
+
+{% for exp in experience %}
+
+<li class="timeline-item">
+
+<h4 class="h4 timeline-item-title">
+        {{ exp.role }}
+    </h4>
+<span>
+
+{{ exp.company }}
+
+</span>
+
+<span>
+
+{{ exp.duration }}
+
+</span>
+
+<p class="timeline-text">
+        {{ exp.description }}
+    </p>
+</li>
+
+{% endfor %}
+
+</ol>
+
+</section>
+
+<!-- ===================== INTERNSHIP ===================== -->
+
+<section class="timeline">
+
+  <div class="title-wrapper">
+    <div class="icon-box">
+      <ion-icon name="school-outline"></ion-icon>
+    </div>
+
+    <h3 class="h3">Internships</h3>
+  </div>
+
+  <ol class="timeline-list">
+
+    {% for internship in internships %}
+    <li class="timeline-item">
+
+      <h4 class="h4 timeline-item-title">
+        {{ internship.role }}
+      </h4>
+
+      <span>
+        {{ internship.company }} | {{ internship.duration }}
+      </span>
+
+      <p class="timeline-text">
+        {{ internship.description }}
+      </p>
+
+      {% if internship.certificate %}
+      <img src="{{ internship.certificate.url }}"
+           alt="Internship Certificate"
+           width="250"
+           style="margin-top:15px;border-radius:10px;">
+      {% endif %}
+
+    </li>
+    {% endfor %}
+
+  </ol>
+
+</section>
+
+<!-- ===================== SKILLS ===================== -->
+
+<section class="skill">
+
+<h3 class="h3 skills-title">
+
+Technical Skills
+
+</h3>
+
+<ul class="skills-list content-card">
+
+{% for skill in skills %}
+
+<li class="skills-item">
+
+<div class="title-wrapper">
+
+<h5 class="h5">
+
+{{ skill.skill_name }}
+
+</h5>
+
+<data>
+
+{{ skill.percentage }}%
+
+</data>
+
+</div>
+
+<div class="skill-progress-bg">
+
+<div class="skill-progress-fill"
+
+style="width:{{ skill.percentage }}%;">
+
+</div>
+
+</div>
+
+</li>
+
+{% endfor %}
+
+</ul>
+
+</section>
+
+</article>
+
+<!-- ===================== PORTFOLIO ===================== -->
+
+<article class="portfolio" data-page="portfolio">
+
+  <header>
+    <h2 class="h2 article-title">Projects</h2>
+  </header>
+
+  <section class="projects">
+
+    <ul class="filter-list">
+      <li class="filter-item">
+        <button class="active" data-filter-btn>All</button>
+      </li>
+    </ul>
+
+    <div class="project-list">
+
+      {% for project in projects %}
+
+      <div class="project-item active" data-filter-item data-category="web development">
+
+        <a href="{{ project.live_demo|default:'#' }}" target="_blank">
+
+          <figure class="project-img">
+
+            <div class="project-item-icon-box">
+              <ion-icon name="eye-outline"></ion-icon>
+            </div>
+
+            {% if project.image %}
+              <img src="{{ project.image.url }}"
+                   alt="{{ project.title }}"
+                   loading="lazy">
+            {% else %}
+              <img src="{% static 'assets/images/project-placeholder.jpg' %}"
+                   alt="{{ project.title }}">
+            {% endif %}
+
+          </figure>
+
+          <h3 class="project-title">
+            {{ project.title }}
+          </h3>
+
+          <p class="project-category">
+            {{ project.technologies }}
+          </p>
+
+        </a>
+
+      </div>
+
+      {% empty %}
+
+      <div class="project-item">
+        <h3>No Projects Added Yet</h3>
+      </div>
+
+      {% endfor %}
+
+    </div>
+
+  </section>
+
+</article>
+
+<!-- ===================== CONTACT ===================== -->
+
+<article class="contact" data-page="contact">
+
+<header>
+
+<h2 class="h2 article-title">
+
+Contact
+
+</h2>
+
+</header>
+
+<section class="mapbox">
+
+<figure>
+
+<iframe
+src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d497698.99219750586!2d79.72908677071!3d13.047358484570762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5265ea4f7d3361%3A0x6e61a70b6863d433!2sChennai!5e0!3m2!1sen!2sin!4v1625641233543!5m2!1sen!2sin"
+width="400"
+height="300"
+loading="lazy">
+
+</iframe>
+
+</figure>
+
+</section>
+
+<section class="contact-form">
+
+<h3 class="h3 form-title">
+
+Contact Form
+
+</h3>
+
+<div id="form-message"
+style="display:none;
+margin-bottom:20px;">
+
+</div>
+
+<form id="contactForm" method="POST">
+
+{% csrf_token %}
+
+{{ contact_form.as_p }}
+
+<button
+class="form-btn"
+type="submit">
+
+Send Message
+
+</button>
+
+</form>
+
+</section>
+
+</article>
+
+<script
+type="module"
+src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js">
+</script>
+
+<script
+nomodule
+src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js">
+</script>
+
+<script src="{% static 'portfolio/js/script.js' %}"></script>
+
+</body>
+
+</html>
+
+<!-- ===================== TESTIMONIALS ===================== 
+
+<section class="testimonials">
+
+  <h3 class="h3 testimonials-title">
+
+    Testimonials
+
+  </h3>
+
+  <ul class="testimonials-list">
+
+{% for testimonial in testimonials %}
+
+<li>
+
+<img
+src="{{ testimonial.image.url }}">
+
+<h4>
+
+{{ testimonial.client_name }}
+
+</h4>
+
+<p>
+
+{{ testimonial.designation }}
+
+</p>
+
+<p>
+
+{{ testimonial.feedback }}
+
+</p>
+
+</li>
+
+{% endfor %}
+
+</ul>
+
+</section>
+
+</article> -->
